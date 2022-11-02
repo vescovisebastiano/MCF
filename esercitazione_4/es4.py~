@@ -1,0 +1,31 @@
+import numpy as np
+from scipy import optimize
+from scipy import integrate
+import matplotlib.pyplot as plt
+import pandas as pd
+import math
+
+#definizione funzione, definisca una funzione lognormale da usare per il fit dei dati;
+
+def lognorm(x): #s, m, h
+    return math.exp(-((math.log(x)-m)/2s)**2)
+
+data = pd.read_csv('fit_data.csv')
+
+xd=np.array(data['x'])
+yd=np.array(data['y'])
+
+    
+x = xd
+y = yd
+
+ey1= np.sqrt(y)
+
+x=np.arange(0.1, 120)
+plt.errorbar(x,y, yerr=ey1, fmt='o')
+plt.plot(x, lognorm(x), color='red')
+plt.xlabel('X')
+plt.ylabel('Y')
+
+
+plt.show()

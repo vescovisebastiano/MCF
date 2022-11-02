@@ -1,0 +1,36 @@
+
+import numpy as np
+from scipy import optimize
+from scipy import integrate
+import matplotlib.pyplot as plt
+import pandas as pd
+
+#oscillatore armonico
+#calcoli il periodo in funzione del punto di partenza x0
+
+def V(x, k):
+    return k*x**6
+
+def T(m, x0, k):
+    arrx=np.arange(0, x0-0.0001, 0.0001)
+    fx=1/(np.sqrt(V(x0, k)-V(arrx, k)))
+    return np.sqrt(8*m)*integrate.simpson(fx, arrx)
+
+print('T=  ', T(1, 2, 1))
+x0max=10
+arrx0=np.arange(0.1, x0max-0.1, 0.1)
+ax = arrx0
+arrT=([0])
+for i in range (1, len(arrx0), 1):
+    arrT=np.append(arrT, T(1, arrx0[i], 1))
+
+plt.plot(arrx0, arrT)
+plt.xlabel('x0')
+plt.ylabel('T')
+
+plt.show()
+
+
+
+
+
