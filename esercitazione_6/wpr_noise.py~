@@ -1,0 +1,18 @@
+import numpy as np
+import matplotlib as plt
+import pandas as pd
+
+data1 = pd.read_csv('data_sample1.csv')
+data2 = pd.read_csv('data_sample2.csv')
+data3 = pd.read_csv('data_sample3.csv')
+
+t=np.arange(0, 4095, 1)
+
+'''ax1=
+ay1
+ax2
+ay2
+ax3
+ay3
+plt.plot(data1 ,)'''
+
