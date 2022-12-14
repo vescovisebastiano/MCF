@@ -1,0 +1,52 @@
+from scipy import integrate
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+
+def Vin1(t):
+    if (int(t)%2==0):
+        return 1
+    else:
+        return -1
+
+def fpb(Vout, t, RC):
+    return (1/RC)*(Vin1(t)-Vout)
+
+voutsol={}
+tsol={}
+RC1=[1, 0.1, 0.05]
+Vin=np.array([])
+h=0.1 #passo dell'asse dei tempi
+
+
+x=np.arange(0,10,0.1)
+y=np.array([])
+for i in x:
+    k=Vin1(i)
+    y=np.append(y, k)
+    
+plt.plot(x, y)
+plt.show()
+
+xo=0 #definisco xo
+
+for i in RC1:
+
+    Voo = np.empty(0)
+    tt = np.arange(0,10,h)
+    Voo = integrate.odeint(fpb, y0=xo, t=tt, args=(i,))
+    voutsol.update({i : Voo})
+    tsol.update({i : tt})
+
+
+#plot
+fig,ax = plt.subplots(figsize=(9,6))
+plt.title('scipy.integrate.odeint ', color='red', fontsize=14)
+
+for i in RC1:
+    plt.plot(tsol[i],voutsol[i], label='{:4f} punti'.format(i))
+
+plt.xlabel('t')
+plt.ylabel('Vout')
+plt.legend( fontsize=14)
+plt.show()
