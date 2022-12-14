@@ -1,0 +1,29 @@
+import sys, os
+import pandas as pd
+import numpy as np
+
+sys.path.append('/home/sv010007/MCF/esercitazione_9')
+
+import eco
+
+M0=pd.read_csv('hit_times_M0.csv')
+M1=pd.read_csv('hit_times_M1.csv')
+M2=pd.read_csv('hit_times_M2.csv')
+M3=pd.read_csv('hit_times_M3.csv')
+def leggi_e_hit(file):
+    t=file['hit_time'].values
+    d=file['det_id'].values
+    m=file['mod_id'].values
+    a0=np.empty([])
+    for i in range(0, np.size(t)):
+       a0=np.append(a0, eco.hit(m[i], d[i], t[i]))
+    return a0
+
+#creazione array di hit
+hit1=leggi_e_hit(M0)
+hit2=leggi_e_hit(M1)
+hit3=leggi_e_hit(M2)
+hit4=leggi_e_hit(M3)
+
+
+

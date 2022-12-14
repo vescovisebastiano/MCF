@@ -1,0 +1,7 @@
+import sys, os
+
+sys.path.append(/home/sv010007/MCF/esercitazione_9)
+
+import somma
+print(somma.sn(15))
+print(somma.srad(10))

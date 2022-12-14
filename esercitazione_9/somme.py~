@@ -1,0 +1,14 @@
+import numpay as np
+
+def sn(n):
+    a=0
+    for i in range (0, n+1):
+        a=a+n
+
+return a
+
+def srad(n):
+    a=0
+    for i in range (0, n+1):
+        a=a+ sqrt(n)
+
