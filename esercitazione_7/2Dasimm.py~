@@ -1,0 +1,19 @@
+#random walk asimmetrico
+
+import sys
+import numpy as np
+import scipy 
+import matplotlib.pyplot as plt
+
+def cum_fi(x):
+    return 1/2*(1-np.cos(x/2))                                                   
+
+def cuminv_fi(y):
+    return 2*arccos(1-2*y)
+
+yy=np.arange(1, 10, 0.001)
+x=np.empty(0)
+for i in yy:
+    x=np.append(x, cuminv_fi(i))
+plt.hist(x,  bins=100, range=(0,5))
+plt.show()

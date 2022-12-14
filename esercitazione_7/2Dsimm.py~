@@ -1,0 +1,33 @@
+#random walk in 2 dimensioni
+
+import sys
+import numpy as np
+import scipy 
+import matplotlib.pyplot as plt
+
+def ran_walk (n, s):
+    walk=np.random.uniform(low=0, high=2*np.pi, size=n)
+    x=np.array([0])
+    y=np.array([0])
+    xtot=0
+    ytot=0
+    for i in walk:
+        xtot=xtot+s*np.cos(walk)
+        x=np.append(x, xtot)
+        ytot=ytot+s*np.sin(walk)
+        y=np.append(y, ytot)
+    return x, y
+
+st=1
+num=1000
+for i in range(6):
+     plt.plot(ran_walk(num, st))
+
+plt.xlabel('x')
+plt.ylabel('y')
+plt.show()     
+    
+    
+    
+    
+    
