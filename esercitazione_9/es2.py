@@ -38,11 +38,6 @@ for i in hitot:
     temtot=np.append(temtot, i.time)
 
 a=np.diff(temtot)
-b=np.empty(0)
-while np.diff < 1000:
-    
-        np.append
-    
 mask= c>0
 c=np.log10(b[mask])
 plt.hist(c, bins=50)
