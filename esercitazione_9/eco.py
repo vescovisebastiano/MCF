@@ -10,7 +10,7 @@ class hit():
         return self.time < other.time
 
 class event:
-     def __init__(self, num, time1, time2, delta, hits):
+     def __init__(self):
          self.num=0
          self.time1=-99
          self.time2=-99

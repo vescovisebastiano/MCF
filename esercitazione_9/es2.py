@@ -28,20 +28,42 @@ hit4=leggi_e_crea_hit(M3)
 #ordinare hit in base al tempo
 hitot=np.concatenate((hit1,hit2,hit3,hit4))
 hitot.sort(kind='mergesort')
-print(hitot)
 
 '''Produca un istogramma dei deltat() fra reco.Hit consecutivi
 Come stabilire la finestra temporale da applicare ai deltat che permetta di raggruppare gli Hit dello stesso evento ma sepaari quelii apparteneti ad eventi differenti?'''
-for i in hitot
-temtot=([])
+
+temtot=np.empty(0)
 for i in hitot:
     temtot=np.append(temtot, i.time)
-
+    
 a=np.diff(temtot)
-mask= c>0
-c=np.log10(b[mask])
+mask = a>0
+c=np.log10(a[mask])
 plt.hist(c, bins=50)
-plt.show()
+'''plt.show()'''
+'''Crei un array di oggeti di tipo reco.Event a partire dall'array ordinato di reco.Hit applicando una finestra temporale ai delta t tra reco.Hit consecutivi'''
+ev=eco.event()
+evtot=np.empty(0)
 
+for i in range (len(hitot)):
+    if hitot[i].time - hitot[i-1].time < 500:
+        ev.aggiungi(hitot[i])
+    else:
+        evtot=np.append(evtot, ev)
+
+a=np.empty(0)
+for i in evtot:
+    a=np.append(a, i.num)
+print(a)
+plt.hist(a, bins=20)
+plt.show()
+    
+
+
+        
+    
+        
+        
+        
 
 
